@@ -5,16 +5,31 @@ public class Block : MonoBehaviour
     public Sprite[] sprites;
     public SpriteRenderer spriteRenderer;
 
+    public Rigidbody2D rb;
+
+    public int difficultyLevel;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    
+    public void ChangeSprite()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (difficultyLevel > 0)
         {
-            spriteRenderer.sprite = sprites[1];
+            spriteRenderer.sprite = sprites[difficultyLevel - 1];
+            difficultyLevel--;
+        } else
+        {
+            Destroy(gameObject);
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        ChangeSprite();
     }
 }

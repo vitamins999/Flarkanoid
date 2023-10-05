@@ -11,6 +11,11 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void FixedUpdate()
+    {
+        rb.velocity = rb.velocity.normalized * speed;
+    }
+
     public void Launch()
     {
         float x = Random.Range(0, 2) == 0 ? -1 : 1;

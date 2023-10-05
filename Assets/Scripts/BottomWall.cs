@@ -7,6 +7,10 @@ public class BottomWall : MonoBehaviour
         GameObject ball = collision.gameObject;
         Destroy(ball);
         GameLogic.numberOfBalls--;
+        
+        GameManager gameManager = FindObjectOfType<GameManager>();
+
+        gameManager.PlayerLoseLife();
     }
 
 }
