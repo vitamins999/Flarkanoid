@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void PlayerLoseLife()
