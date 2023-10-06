@@ -6,14 +6,15 @@ public class EndGame : MonoBehaviour
     public TMP_Text gameOverText;
     public TMP_Text youWinText;
     public TMP_Text finalScoreText;
+    public TMP_Text highScoreText;
 
     public AudioSource[] endGameMusic;
 
+    int livesLeft = GameManager.playerLives;
+    int finalScore = GameManager.playerScore;
+
     private void Awake()
     {
-        int livesLeft = GameManager.playerLives;
-        int finalScore = GameManager.playerScore;
-
         endGameMusic = GetComponents<AudioSource>();
 
         if (livesLeft > 0)
@@ -28,7 +29,7 @@ public class EndGame : MonoBehaviour
             youWinText.enabled = false;
         }
 
-        finalScoreText.text = finalScore.ToString();
+        getAndSetHighScore();
     }
 
     private void Update()
@@ -38,5 +39,20 @@ public class EndGame : MonoBehaviour
             Debug.Log("Quit!");
             Application.Quit();
         }
+    }
+
+    private void getAndSetHighScore()
+    {
+        finalScoreText.text = finalScore.ToString();
+
+        int highscore = PlayerPrefs.GetInt("highscore", 0);
+
+        if (finalScore > highscore)
+        {
+            highscore = finalScore;
+        }
+
+        highScoreText.text = highscore.ToString();
+        PlayerPrefs.SetInt("highscore", highscore);
     }
 }
