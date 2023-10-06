@@ -6,6 +6,7 @@ public class ShootBall : MonoBehaviour
     private PlayerInput playerInput;
 
     private InputAction fireAction;
+    private InputAction destroyAction;
 
     public Transform firePoint;
     public GameObject ballPrefab;
@@ -16,6 +17,7 @@ public class ShootBall : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         fireAction = playerInput.actions["Fire"];
+        destroyAction = playerInput.actions["Destroy"];
     }
 
     void Update()
@@ -23,6 +25,12 @@ public class ShootBall : MonoBehaviour
         if (fireAction.triggered && GameLogic.numberOfBalls == 0)
         {
             FireBall();
+        }
+
+        if (destroyAction.triggered && GameLogic.numberOfBalls > 0)
+        {
+            DestroyBall();
+            GameLogic.numberOfBalls--;
         }
     }
 
@@ -33,5 +41,11 @@ public class ShootBall : MonoBehaviour
         rb.velocity = new Vector2(0, 1) * ballSpeed;
 
         GameLogic.numberOfBalls++;
+    }
+
+    void DestroyBall()
+    {
+        GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+        Destroy(ball);
     }
 }

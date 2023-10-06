@@ -107,7 +107,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0d9e8e3ddb97307498ab3b6bec51f195, type: 3}
   - {fileID: 21300000, guid: 9950a474eef6431489b2af05b6074a22, type: 3}
   spriteRenderer: {fileID: 0}
-  blockHitSFX: {fileID: 0}
+  blockHitSFX: {fileID: 8300000, guid: b191a9356d76e504e93e29151b9b14e3, type: 3}
   rb: {fileID: 0}
   difficultyLevel: 0
 --- !u!50 &3704919585167648845

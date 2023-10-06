@@ -5,7 +5,7 @@ public class Block : MonoBehaviour
     public Sprite[] sprites;
     public SpriteRenderer spriteRenderer;
 
-    public AudioSource blockHitSFX;
+    public AudioClip blockHitSFX;
 
     public Rigidbody2D rb;
 
@@ -15,7 +15,6 @@ public class Block : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        blockHitSFX = GetComponent<AudioSource>();
     }
 
     
@@ -33,7 +32,7 @@ public class Block : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        blockHitSFX.Play();
+        AudioSource.PlayClipAtPoint(blockHitSFX, transform.position);
 
         ChangeSprite();
         GameManager.playerScore += 10;
