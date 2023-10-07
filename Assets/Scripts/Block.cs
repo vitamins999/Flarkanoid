@@ -26,6 +26,8 @@ public class Block : MonoBehaviour
             difficultyLevel--;
         } else
         {
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            gameManager.BlockDestroyed();
             Destroy(gameObject);
         }
     }
@@ -35,6 +37,9 @@ public class Block : MonoBehaviour
         AudioSource.PlayClipAtPoint(blockHitSFX, transform.position);
 
         ChangeSprite();
-        GameManager.playerScore += 10;
+
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        
+        gameManager.Hit();
     }
 }
